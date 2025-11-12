@@ -92,7 +92,7 @@ export default function Header() {
   return (
     <header
       className={[
-        "relative",
+        "fixed",
         "inset-x-0 top-0 z-50 border-b font-sans transition-colors duration-300",
         open
           ? "bg-white border-gray-200"
