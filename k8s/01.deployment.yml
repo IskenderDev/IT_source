@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${CI_PROJECT_NAME}
+  namespace: services 
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: ${CI_PROJECT_NAME}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${CI_PROJECT_NAME}
+  namespace: services   
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ${CI_PROJECT_NAME}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ${CI_PROJECT_NAME}
+    spec:
+      imagePullSecrets:
+      - name: registry-key
+      containers:
+      - name: ${CI_PROJECT_NAME}-pod
+        image: ${RELEASE_IMAGE_WITH_HASH}
+        ports:
+        - containerPort: 80
+        env: 
+          - name: TZ
+            value: Asia/Bishkek        
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "512Mi"
+            cpu: "256m"
+        envFrom:
+        # - configMapRef:
+        #     name: ${CI_PROJECT_NAME}-configmap
+         - secretRef:
+             name: ${CI_PROJECT_NAME}-secret
+        # volumeMounts:
+        # - name: ${CI_PROJECT_NAME}-nfs
+        #   mountPath: /mnt/ #change path bind in container
+      # volumes:
+      # - name: ${CI_PROJECT_NAME}-nfs
+      #   persistentVolumeClaim:
+      #     claimName: ${CI_PROJECT_NAME}-nfs
+

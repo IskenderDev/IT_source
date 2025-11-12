@@ -1,0 +1,239 @@
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
+
+const year = new Date().getFullYear();
+const BASE = import.meta.env.BASE_URL || "/";
+
+/** Плавный скролл к якорю с учётом «той же» страницы */
+function scrollToHash(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const prefersReduced =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+  // при необходимости сместите offset под высоту шапки
+  const offset = 10; // px
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+
+  window.scrollTo({ top, behavior: prefersReduced ? "auto" : "smooth" });
+}
+
+/** Умная навссылка: если мы на той же странице — скроллим; иначе — обычный переход */
+function NavLink({
+  toId,
+  children,
+}: {
+  toId: string;
+  children: React.ReactNode;
+}) {
+  const href = `${BASE}#${toId}`;
+  const onClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    const sameDoc =
+      // на проде с заданным base
+      window.location.pathname.startsWith(BASE) ||
+      // на деве/локали
+      (BASE === "/" && window.location.pathname === "/");
+
+    if (sameDoc) {
+      const el = document.getElementById(toId);
+      if (el) {
+        e.preventDefault();
+        // обновим hash в адресной строке, чтобы работал back/forward
+        history.replaceState(null, "", href);
+        scrollToHash(toId);
+      }
+    }
+  };
+
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="transition-colors hover:text-primary"
+    >
+      {children}
+    </a>
+  );
+}
+
+export default function Footer() {
+  return (
+    <footer className="bg-black font-sans border-t border-white/10 text-white/90">
+      <div className="mx-auto px-4 sm:px-8 lg:px-16 py-20">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:gap-16">
+          <div className="flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-semibold text-white">IT Source</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Комплексные IT&nbsp;услуги
+              </p>
+            </div>
+
+            <div className="flex items-center gap-5">
+              <SocialLink href="https://www.facebook.com/ITSource.kg" label="Facebook">
+                <FaFacebookF />
+              </SocialLink>
+              <SocialLink href="https://www.instagram.com/it_source_kg/" label="Instagram">
+                <FaInstagram />
+              </SocialLink>
+              <SocialLink href="https://wa.me/996555800013" label="Telegram">
+                <FaWhatsapp />
+              </SocialLink>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold">Навигация</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li>
+                <NavLink toId="home">Главная</NavLink>
+              </li>
+              <li>
+                <NavLink toId="services">Услуги</NavLink>
+              </li>
+              <li>
+                <NavLink toId="pricing">Тарифы</NavLink>
+              </li>
+              <li>
+                <NavLink toId="contact">Контакты</NavLink>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold">Услуги</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li>Аудит инфраструктуры</li>
+              <li>Проектирование IT-решений</li>
+              <li>Внедрение систем &quot;под ключ&quot;</li>
+              <li>Слаботочные системы</li>
+              <li>Сетевые решения</li>
+              <li>Серверные решения</li>
+              <li>Поставка оборудования</li>
+              <li>Аренда серверов</li>
+              <li>Специальные и готовые решения</li>
+              <li>Тех поддержка и SLA</li>
+              <li>1C RDP</li>
+            </ul>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-white font-semibold">Контакты</h4>
+              <div className="mt-4 space-y-4 text-sm">
+                <p>г. Бишкек, ул Бакаева 140/3</p>
+                <div className="space-y-2">
+                  <p>
+                    отдел продаж:{" "}
+                    <a href="tel:+996555800013" className="hover:text-primary">
+                      +996 555 800013
+                    </a>
+                  </p>
+                  <p>
+                    тех поддержка:{" "}
+                    <a href="tel:+996999800013" className="hover:text-primary">
+                      +996 999 800013
+                    </a>
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p>
+                    <a
+                      href="mailto:info@itsource.kg"
+                      className="hover:text-primary underline-offset-4 hover:underline"
+                    >
+                      info@itsource.kg
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href="mailto:sales@itsource.kg"
+                      className="hover:text-primary underline-offset-4 hover:underline"
+                    >
+                      sales@itsource.kg
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href="mailto:help@itsource.kg"
+                      className="hover:text-primary underline-offset-4 hover:underline"
+                    >
+                      help@itsource.kg
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold">Документы и материалы</h4>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li>
+                  <a
+                    className="hover:text-primary transition hover:border-white/30 hover:bg-white/5 active:scale-95"
+                    href="/privacy.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Политика конфиденциальности
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="hover:text-primary transition hover:border-white/30 hover:bg-white/5 active:scale-95"
+                    href="/cookie.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Политика cookie 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="hover:text-primary transition hover:border-white/30 hover:bg-white/5 active:scale-95"
+                    href="/permanent-qr.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    QR для публикаций
+                  </a>
+                </li>
+              </ul>
+          
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10 lg:mt-14 border-t border-white/10 py-8 text-center text-xs text-white/60">
+        © {year} – It Source
+      </div>
+    </footer>
+  );
+}
+
+function SocialLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 transition hover:border-white/30 hover:bg-white/5 active:scale-95"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span className="text-lg">{children}</span>
+    </a>
+  );
+}

@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html, body, #root { min-height: 100%; overflow-x: hidden;}
+body { margin: 0; }
+html { scroll-behavior: smooth; }
+p{
+  font-family: "Manrope", monospace !important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family:"IBM Plex Mono", monospace !important; 
+}
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+  width: 200%;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+  width: 200%;
+}
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+  width: 200%;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+  width: 200%;
+}
+
+@keyframes slideDown {
+  0%   { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slideDown {
+  animation: slideDown 220ms ease-out forwards;
+}
+
+.overflow-x-auto::-webkit-scrollbar { height: 6px; }
+.overflow-x-auto::-webkit-scrollbar-track { background: transparent; }
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 9999px;
+}
+.overflow-x-auto:hover::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.28); }
+
+
+@theme {
+  --font-sans: "Manrope", monospace;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-primary-50:  #03CEA40D;
+  --color-primary-100: #03CEA426;
+  --color-primary-250: #03CEA459;
+  --color-primary-300: #026A54;
+  --color-primary-500-gradient: linear-gradient(180deg, #0AFFCC 0%, #017D64 100%);
+  --color-primary-700: #3BFCD4;
+  --color-primary-900: #9FFEEA;
+
+  --color-secondary: #011627;
+
+  --bg-main: #011627;
+  --bg-home: linear-gradient(0.13deg, #001B32 0.12%, #064982 82.16%);
+
+}
+
+body {
+  background: var(--bg-home);
+  background-attachment: fixed;  
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;                     
+  font-family: var(--font-sans);
+}
+
+@utility bg-main {
+  background-image: var(--bg-main-gradient);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@utility color-primary-500 {
+  background-image: var(--color-primary-500-gradient);
+}
+
+
+@utility bg-home {
+  background-image: var(--bg-home);
+}
+
+@utility text-secondary {
+  color: var(--color-secondary);
+}
+
+
+.embla { overflow: hidden; }
+.embla__container { will-change: transform; }
+.embla__slide { min-width: 0; }
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.rich-content {
+  display: grid;
+  gap: 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.75rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.rich-content h1,
+.rich-content h2 {
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.rich-content h1 {
+  font-size: clamp(2.25rem, 2.8vw, 3rem);
+}
+
+.rich-content h2 {
+  font-size: clamp(1.75rem, 2vw, 2.5rem);
+  margin-top: 1.5rem;
+}
+
+.rich-content p {
+  margin: 0;
+}
+
+.rich-content a {
+  color: #0177FF;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition: color 0.2s ease;
+}
+
+.rich-content a:hover {
+  color: #4099ff;
+}
+
+.rich-content ul,
+.rich-content ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.rich-content img,
+.rich-content picture {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.rich-content pre {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow: auto;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.rich-content code {
+  font-family: "IBM Plex Mono", monospace;
+}
+.rich-content ul {
+  list-style: disc;
+}
+
+.rich-content ol {
+  list-style: decimal;
+}
+
+.rich-content li {
+  margin: 0;
+}
+

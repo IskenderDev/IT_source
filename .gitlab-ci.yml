@@ -1,0 +1,61 @@
+stages:
+  - security
+  - prepare
+  - build
+  - deploy
+
+include:
+    remote: 'https://gitlab.itsource.kg/public-group/snippets/-/raw/master/k8s-deploy.yaml'
+    rules:
+        - if: '$CI_COMMIT_BRANCH == "master"'
+
+gitleaks:
+  stage: security
+  before_script: [ ]
+  image:
+    name: "zricethezav/gitleaks"
+    entrypoint: [ "" ]
+  script:
+    - gitleaks detect -v ./docker/src/
+  allow_failure: true
+
+trivy:repository:
+  stage: security
+  before_script: [ ]
+  image:
+    name: docker.io/aquasec/trivy:latest
+    entrypoint: [ "" ]
+  variables:
+    TRIVY_USERNAME: "$CI_REGISTRY_USER"
+    TRIVY_PASSWORD: "$CI_REGISTRY_PASSWORD"
+    TRIVY_AUTH_URL: "$CI_REGISTRY"
+    TRIVY_NO_PROGRESS: "true"
+    TRIVY_CACHE_DIR: ".trivycache/"
+  script:
+    - time trivy clean --scan-cache
+    - time trivy fs --exit-code 1 --severity CRITICAL ./docker/src
+  cache:
+    paths:
+      - .trivycache/
+  allow_failure: true
+
+eslint:
+  stage: prepare
+  image: node:20
+  before_script:
+    - cd docker/src
+    - npm ci
+  script:
+    - npx eslint . --ext .js,.jsx,.ts,.tsx
+  allow_failure: false
+
+prettier:
+  stage: prepare
+  image: node:20
+  before_script:
+    - cd docker/src
+    - npm ci
+  script:
+    - npx prettier --write "**/*.{js,jsx,ts,tsx,css,scss,md,json}"
+    - git diff --color || true
+  allow_failure: true

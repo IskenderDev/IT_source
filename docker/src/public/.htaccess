@@ -1,0 +1,22 @@
+# запрет на выдачу .env
+<Files ".env">
+  Require all denied
+</Files>
+
+# отключим автоиндексацию
+Options -Indexes
+
+# если нужен кэш для статики из dist (опционально)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/* "access plus 30 days"
+</IfModule>
+
+# API должно обрабатываться PHP
+RewriteEngine On
+RewriteRule ^api/ - [L]
+
+# всё остальное — обычная статика из dist
+DirectoryIndex index.html
