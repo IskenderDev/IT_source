@@ -208,7 +208,7 @@ export default function Slider({
                       <h3 className="text-[32px] lg:text-[40px] font-bold leading-snug">
                         {s.title}
                       </h3>
-                      <p className="mt-6 text-[16px] w-70 leading-relaxed text-white/90 whitespace-pre-line">
+                      <p className="mt-6 text-[16px] leading-relaxed text-white/90 whitespace-pre-line">
                         {s.text}
                       </p>
 
