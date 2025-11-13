@@ -7,12 +7,12 @@ const META_DESCRIPTION = "Свежие статьи о внедрении и и�
 
 export default function NewsList() {
   useEffect(() => {
-    setPageTitle("Новости | ITSource");
+    setPageTitle("Статьи | ITSource");
     updateMetaName("description", META_DESCRIPTION);
   }, []);
 
   return (
-    <main className="bg-[#011627] min-h-screen w-full text-white -mt-22 pt-22">
+    <main className="bg-[#011627] min-h-screen w-full text-white pt-22">
       <div className="mx-auto flex flex-col gap-10 px-4 py-10 md:px-6 lg:px-8 ">
         <header className="space-y-3">
           <p className="text-sm uppercase tracking-[0.3em] text-[#00C38A]">Новости</p>

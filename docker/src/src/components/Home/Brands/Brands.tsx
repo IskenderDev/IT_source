@@ -4,7 +4,7 @@ export default function Brands() {
   return (
     <section className="w-full py-20 mt-8 md:mt-36 font-sans overflow-hidden">
       <div className="px-4 md:px-8">
-        <h2 className="text-center text-[#F1F1F1] text-sm md:text-base">
+        <h2 className="text-center text-[#F1F1F1] text-sm md:text-2xl">
           Мы помогли более 100+ компаниям
         </h2>
         <div className="mx-auto mt-4 mb-8 h-px w-full max-w-[900px] bg-white" />

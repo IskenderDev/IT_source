@@ -150,7 +150,7 @@ export default function Header() {
               " "
             )}
           >
-            Новости
+            Статьи
           </button>
           <button
             onClick={() => goTo("contact")}

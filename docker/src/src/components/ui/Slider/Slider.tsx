@@ -6,9 +6,10 @@ import { Button, SectionTitle } from "../../ui";
 import { handleHashLinkClick } from "../../../lib/scroll";
 
 export type Slide = {
-  title: string;
+  title?: string;
   text: string;
   image: string;
+  href?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
   tertiary?: { label: string; href: string };

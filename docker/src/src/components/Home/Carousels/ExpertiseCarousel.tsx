@@ -6,7 +6,7 @@ import { Button, SectionTitle } from "../../ui";
 import { EXPERTISE_SLIDES } from "../../../app/data/slides";
 
 export type Slide = {
-  title: string;
+  title?: string;
   text: string;
   image: string;
   primary?: { label: string; href: string };
