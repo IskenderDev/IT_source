@@ -139,11 +139,11 @@ export default function ExpertiseSection({
             const showImgMobile = Boolean(s.image) && i !== 0;
 
             return (
-              <div key={i} className="flex-[0_0_100%] flex justify-center">
+              <div key={i} className="flex-[0_0_100%] flex justify-center h-150 w-200">
                 <article
                   className="
-      relative w-full max-w-[360px] md:max-w-full
-      h-[1024px] md:h-[520px] lg:h-[560px]
+      relative w-full max-w-[100%] md:max-w-full
+      h-150 md:h-[520px] lg:h-[560px]
       rounded-[24px] md:rounded-[28px]
       p-4 md:p-8 lg:p-9
       text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)]
@@ -154,27 +154,25 @@ export default function ExpertiseSection({
                       s.background ?? "linear-gradient(280.68deg, #054277 1.65%, #01192A 97.64%)",
                   }}
                 >
-                  {/* Мобильная версия */}
                   <div className="md:hidden flex flex-col items-center">
                     {mobileImageTop && showImgMobile && (
                       <img
                         src={s.image}
                         alt={s.imageAlt ?? ""}
                         className="object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
-                        style={{ maxHeight: `${mMax}px` }} // <- используем mMax
+                        style={{ maxHeight: `${mMax}px` }}
                       />
                     )}
 
-                    <h3 className="mt-4 text-[24px] sm:text-[28px] font-bold">{s.title}</h3>
+                    <h3 className="mt-4 text-[24px] sm:text-[28px] text-center font-bold">{s.title}</h3>
                     <p className="mt-2 text-[14px] text-center">{s.text}</p>
                     <CTAButtons primary={s.primary} secondary={s.secondary} />
                   </div>
 
-                  {/* Десктопная версия */}
                   <div className="hidden md:flex h-full items-center gap-8 relative">
                     <div className="flex-1 ml-20">
                       <h3 className="text-[32px] lg:text-[40px] font-bold">{s.title}</h3>
-                      <p className="mt-4 text-[15px] text-white font-light">{s.text}</p>
+                      <p className="mt-4 text-[15px] mr-15 text-white font-light">{s.text}</p>
                       <CTAButtons primary={s.primary} secondary={s.secondary} />
                     </div>
 
