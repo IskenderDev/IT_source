@@ -40,18 +40,16 @@ const CARDS: Card[] = [
 
 function SecurityCard({ card }: { card: Card }) {
   return (
-    <article className="relative w-full h-72 bg-white/5 border border-white/10  p-6 md:p-7   transition-transform duration-300 hover:-translate-y-1">
+    <article className="relative w-full bg-white/5 border border-white/10 p-6 md:p-7 transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(0,255,204,0.2)] rounded-lg overflow-hidden">
       <div
         className="absolute -top-6 -left-6 w-32 h-32 rounded-full blur-[120px] transition-opacity duration-300"
         style={{ backgroundColor: card.color, opacity: 0.28 }}
       />
-        <div className="text-2xl md:text-3xl mb-5" style={{ color: card.color }}>
-          {card.icon}
-        </div>
-      <div className="relative flex gap-3 mb-4">
-        <h3 className="text-lg md:text-xl font-semibold">{card.title}</h3>
+      <div className="text-2xl md:text-3xl mb-5" style={{ color: card.color }}>
+        {card.icon}
       </div>
-      <p className="text-white/70 text-sm leading-relaxed">{card.text}</p>
+      <h3 className="text-lg md:text-xl font-semibold mb-3">{card.title}</h3>
+      <p className="text-white/70 text-sm md:text-base leading-relaxed">{card.text}</p>
     </article>
   );
 }
@@ -64,24 +62,20 @@ export default function SecuritySection() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto ">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-center">Безопасность</h2>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-center">
+          Безопасность
+        </h2>
         <p className="text-white/70 max-w-3xl mx-auto text-center">
           Безопасность является главным приоритетом для 1C RDP, и для обеспечения
           безопасности и конфиденциальности пользовательских данных был принят ряд
           мер. К таким мерам относятся:
         </p>
 
-        <div className="mt-14 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6">
-          {CARDS.map((card, i) => {
-            const span =
-              i < 3 ? "sm:col-span-1 lg:col-span-2" : "sm:col-span-2 lg:col-span-3";
-            return (
-              <div key={i} className={span}>
-                <SecurityCard card={card} />
-              </div>
-            );
-          })}
+        <div className="mt-14 grid gap-6 grid-cols-1 lg:grid-cols-3">
+          {CARDS.map((card, i) => (
+            <SecurityCard key={i} card={card} />
+          ))}
         </div>
       </div>
 
