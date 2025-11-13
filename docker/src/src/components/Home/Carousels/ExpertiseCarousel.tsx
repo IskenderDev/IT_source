@@ -7,8 +7,8 @@ import { EXPERTISE_SLIDES } from "../../../app/data/slides";
 
 export type Slide = {
   title?: string;
-  text: string;
-  image: string;
+  text?: string;
+  image?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
   imageAlt?: string;

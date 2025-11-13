@@ -5,10 +5,18 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button, SectionTitle } from "../../ui";
 import { handleHashLinkClick } from "../../../lib/scroll";
 
-export type Slide = {
-  title?: string;
-  text: string;
+type Card = {
+  username: string;
+  role: string;
   image: string;
+};
+
+export type Slide = {
+  type?: "intro" | "team" | "default";
+  title?: string;
+  text?: string;
+  image?: string;
+  cards?: Card[];
   href?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };

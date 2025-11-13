@@ -44,12 +44,53 @@ export const EXPERTISE_SLIDES: Slide[] = [
 
 export const COMMAND_SLIDES: Slide[] = [
   {
-    image: ``,
-    text: "Уже больше 10 лет мы создаём надёжную ИТ-инфаструктуру для бизнеса любого масштаба.\n" +
-      "ИТ-инфраструктуру для бизнеса любого масштаба.\n" +
-      "Команда IT Source - инженеры, архитекторы цифровой инфраструктуры, которые знают, знают как превратить сложные системы в работающие решения."
-  }
-]
+     type: "intro",
+    image: `${import.meta.env.BASE_URL}assets/slides/command/command.png`,
+    text: `Уже больше 10 лет мы создаём надёжную \n ИТ-инфраструктуру для бизнеса любого масштаба.
+Команда IT Source — инженеры, архитекторы \n цифровой инфраструктуры, которые знают, как \n превратить сложные системы в работающие \n решения.`,
+  },
+  {
+     type: "team",
+    cards: [
+      {
+        username: 'Тенизбаев Улукбек',
+        role: 'IT специалист',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/three.png`,
+      },
+      {
+        username: 'Анатолий Коломейцев',
+        role: 'Технический директор',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/four.png`,
+      },
+      {
+        username: 'Косо Оглы Руслан',
+        role: 'IT специалист',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/six.png`,
+      },
+      {
+        username: 'Макаров Евгений',
+        role: 'Операционный директор',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/second.png`,
+      },
+      {
+        username: 'Остащенко Александр',
+        role: 'Координатор',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/first.png`,
+      },
+      {
+        username: 'Данилов Александр',
+        role: 'Коммерческий директор',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/five.png`,
+      },
+      {
+        username: 'Данилов Александр',
+        role: 'Коммерческий директор',
+        image: `${import.meta.env.BASE_URL}assets/slides/command/five.png`,
+      },
+    ]
+  },
+];
+
 
 export const HOSTING_SLIDES: Slide[] = [
   {
