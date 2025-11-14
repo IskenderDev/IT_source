@@ -54,7 +54,7 @@ export default function Slider({
   glowSize = 200,
   mobileImageTop = true,
   mobileSlideMinH = 560,
-  imageMaxHMobile = 192,
+  imageMaxHMobile = 320,
   imageMaxHDesktop = 480,
   imageRightPx = 40,
 }: Props) {
@@ -140,20 +140,20 @@ export default function Slider({
                       'linear-gradient(280.68deg, #054277 1.65%, #01192A 97.64%)',
                   }}
                 >
-                  <div className="md:hidden mt-auto font-mono text-center">
+                  <div className="md:hidden mt-auto font-mono text-center flex flex-col items-center">
                     {mobileImageTop && s.image && (
-                      <div className="mb-3 flex justify-center">
+                      <div className="mb-5 flex w-full justify-center">
                         <img
                           src={s.image}
                           alt={s.imageAlt ?? ""}
                           loading="lazy"
                           style={{ maxHeight: `${mMax}px` }}
-                          className="object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
+                          className="w-full max-w-[360px] sm:max-w-[420px] object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
                         />
                       </div>
                     )}
 
-                    <h3 className="text-[24px] sm:text-[28px] font-bold leading-snug">
+                    <h3 className="text-[22px] sm:text-[26px] font-bold leading-snug">
                       {s.title}
                     </h3>
                     <p className="mt-3 text-[13px] sm:text-[14px] leading-relaxed text-white/90 whitespace-pre-line">

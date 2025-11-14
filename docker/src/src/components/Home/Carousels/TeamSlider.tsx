@@ -87,7 +87,7 @@ const TeamSlider: React.FC = () => {
 
   return (
     <section className="w-full py-10 lg:py-24">
-      <div className=" mx-auto px-4">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Заголовок секции, если нужен */}
         <div className="md:mb-12 text-center">
           <p className="text-sm mb-10 md:text-base text-white/80 max-w-2xl mx-auto">
@@ -104,27 +104,23 @@ const TeamSlider: React.FC = () => {
               <article
                 className="
                   relative w-full
-                  min-h-[200px] md:min-h-[300px]
+                  min-h-[260px] sm:min-h-[320px] md:min-h-[360px]
                   rounded-[24px] md:rounded-[28px]
-                  px-6 py-8 md:px-10 md:py-12
+                  px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12
                   text-white
                   flex flex-col md:flex-row items-center gap-8 md:gap-10
+                  bg-gradient-to-br from-[#041c31] via-[#031223] to-[#01070f]
+                  border border-white/10
                 "
-                style={{
-                  background:
-                    "",
-                }}
               >
                 {/* Текстовая часть */}
-                <div className="w-full flex flex-col gap-2 text-center text-2xl ml-5 md:w-1/2">
-                  <p>
-                    Уже больше 10 лет мы создаём надёжную
-                  </p>
+                <div className="w-full md:w-1/2 flex flex-col gap-2 text-center md:text-left text-lg sm:text-xl md:text-2xl leading-relaxed">
+                  <p>Уже больше 10 лет мы создаём надёжную</p>
                   <p className="text-[#49d7bf]">ИТ-инфраструктуру для бизнеса любого масштаба.</p>
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex flex-wrap justify-center md:justify-start gap-1 text-base sm:text-lg">
                     <p>Команда</p>
                     <p className="text-[#49d7bf]">IT Source</p>
-                    <p> - инженеры, архитекторы</p>
+                    <p>— инженеры, архитекторы</p>
                   </div>
                   <p>цифровой инфраструктуры, которые знают, как</p>
                   <p>превратить сложные системы в работающие решения.</p>
@@ -132,20 +128,16 @@ const TeamSlider: React.FC = () => {
 
                 {/* Фото */}
                 <div className="w-full md:w-1/2 flex justify-center">
-                  <div className="relative w-[420px] h-[340px] sm:w-[480px] sm:h-[380px] md:w-[520px] md:h-[400px]">
-                    <div className="absolute inset-0 rounded-[12%] " />
-                    <img
-                      src={Command}
-                      alt="Наша команда"
-                      className="
-      relative z-10 w-full h-full object-cover
-      rounded-[10%]
-      border border-white/15
-    "
-                      loading="lazy"
-                    />
+                  <div className="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[520px]">
+                    <div className="aspect-[4/3] rounded-[18px] border border-white/10 overflow-hidden shadow-xl">
+                      <img
+                        src={Command}
+                        alt="Наша команда"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
-
                 </div>
 
                 {/* Стрелки */}
@@ -163,24 +155,25 @@ const TeamSlider: React.FC = () => {
     relative w-full
     min-h-[520px]
     rounded-[24px] md:rounded-[28px]
-    px-4 py-8 md:px-8 md:py-10
+    px-4 py-8 sm:px-6 md:px-8 md:py-10
     text-white
     flex flex-col items-center gap-12
-    -translate-y-[40px] md:-translate-y-[60px]
+    bg-gradient-to-bl from-[#031a2d] via-[#021224] to-[#010810]
+    border border-white/10
   "
               >
-                <div className="flex flex-col items-center gap-16 -translate-y-[20px] md:-translate-y-[-20px]">
-                  {/* Верхний ряд — немного приподнят */}
-                  <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-24 -translate-y-[-20px]">
+                <div className="flex w-full flex-col items-center gap-12">
+                  {/* Верхний ряд */}
+                  <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
                     {teamTop.map((person, i) => (
-                      <TeamCard key={i} member={person} />
+                      <TeamCard key={`top-${i}`} member={person} />
                     ))}
                   </div>
 
-                  {/* Нижний ряд — чуть ближе к центру */}
-                  <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-20 -translate-y-[20px]">
+                  {/* Нижний ряд */}
+                  <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
                     {teamBottom.map((person, i) => (
-                      <TeamCard key={i} member={person} />
+                      <TeamCard key={`bottom-${i}`} member={person} />
                     ))}
                   </div>
                 </div>
@@ -216,8 +209,8 @@ const TeamSlider: React.FC = () => {
 };
 
 const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => (
-  <div className="flex flex-col items-center text-center w-[260px]">
-    <div className="w-[180px] h-[180px] rounded-full overflow-hidden mb-4">
+  <div className="flex w-full flex-col items-center text-center max-w-[240px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] mx-auto">
+    <div className="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] rounded-full overflow-hidden mb-4 border border-white/10 shadow-lg">
       <img
         src={member.img}
         alt={member.name}
@@ -225,10 +218,10 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => (
         loading="lazy"
       />
     </div>
-    <p className="text-sm text-white/80 tracking-[0.06em] uppercase mb-1">
+    <p className="text-xs sm:text-sm text-white/70 tracking-[0.08em] uppercase mb-1">
       {member.role}
     </p>
-    <p className="text-base text-white">{member.name}</p>
+    <p className="text-sm sm:text-base text-white leading-snug">{member.name}</p>
   </div>
 );
 
