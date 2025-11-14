@@ -16,7 +16,7 @@ export default function ProjectsCarousel({
   badgeLabel = "Проекты примеры внедрений",
   className = "",
   autoplay = true,
-  autoplayDelayMs = 4000,
+  autoplayDelayMs = 3000,
 }: ProjectsCarouselProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);

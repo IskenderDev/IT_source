@@ -19,7 +19,6 @@ import TransformationCTA from "../../components/Home/TransformationCTA/Transform
 
 const HEADER_OFFSET = 80;
 
-
 function scrollHashIntoView(hash: string) {
   const id = (hash || "").replace("#", "");
   if (!id) return;

@@ -106,10 +106,9 @@ const ReadySolutions = ({ solutions = DEFAULT_SOLUTIONS as SolutionWithMobile[] 
           {solutions.map((s) => (
             <li
               key={s.id}
-              className="grid grid-cols-1 md:grid-cols-[520px_1fr] gap-5 md:gap-8 items-stretch"
+              className="flex  gap-5 md:gap-8 items-stretch"
             >
               <div className="rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-xl">
-                {/* В списке: мобильная версия через <picture> */}
                 <picture>
                   <source media="(max-width: 639px)" srcSet={s.imageMobile || s.image} />
                   <img

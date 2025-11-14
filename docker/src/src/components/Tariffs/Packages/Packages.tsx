@@ -8,14 +8,14 @@ type CardProps = {
   title: string;
   lines: (string | JSX.Element)[];
   Icon: React.ElementType;
-  glow: string; 
+  glow: string;
 };
 
 function ContactCard({ title, lines, Icon, glow }: CardProps) {
   return (
     <div
       className="group relative bg-[#0e1c29] border border-white/10 h-[270px] p-6 md:p-8 overflow-hidden"
-      
+
     >
       <div
         className="pointer-events-none absolute -bottom-6 -left-6 w-40 h-40 rounded-full blur-[120px] transition-opacity duration-300"
@@ -51,7 +51,7 @@ function PlanCard({ plan }: { plan: Plan }) {
   return (
     <div
       className={[
-        featured ? "sm:col-span-2 lg:col-span-1 lg:col-start-2" : "",
+        featured ? "lg:col-span-1 lg:col-start-2" : "",
         "relative isolate h-full w-full",
       ].join(" ")}
     >
@@ -65,13 +65,6 @@ function PlanCard({ plan }: { plan: Plan }) {
           "transition-transform duration-300 will-change-transform",
         ].join(" ")}
       >
-        <div
-          className="pointer-events-none absolute -left-10 -top-10 h-28 w-28 sm:h-36 sm:w-36 md:h-44 md:w-44 rounded-full blur-3xl opacity-35"
-          style={{
-            background:
-              "radial-gradient(140px 140px at 50% 50%, rgba(10,252,204,0.45), rgba(0,0,0,0))",
-          }}
-        />
         <div
           className="pointer-events-none absolute -right-12 -bottom-12 h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48 rounded-full blur-3xl opacity-25"
           style={{
@@ -89,7 +82,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           </div>
         </div>
 
-        <ul className="mt-4 sm:mt-5 md:mt-6 text-white/85 space-y-1">
+        <ul className="mt-4 sm:mt-5 md:mt-6 text-white/85 space-y-1 text-center">
           <li className="text-[17px] sm:text-[19px] md:text-[21px]">{cpu}</li>
           <li className="text-[17px] sm:text-[19px] md:text-[21px]">{ram}</li>
           <li className="text-[17px] sm:text-[19px] md:text-[21px]">{ssd}</li>
@@ -98,8 +91,9 @@ function PlanCard({ plan }: { plan: Plan }) {
         <div className="mt-5 sm:mt-6 md:mt-7 relative">
           <Button
             size="lg"
-            className="w-full text-[14.5px] sm:text-[15.5px] md:text-[16.5px] !rounded-full !bg-[var(--color-primary-500-gradient)]"
+            className="w-full text-[14.5px] sm:text-[15.5px] md:text-[16.5px]"
             aria-label={`Выбрать план за ${price} сом/мес`}
+            href="#contact"
           >
             Оставить заявку
           </Button>
@@ -139,7 +133,7 @@ export default function Packages() {
         <div
           className={[
             "mt-8 sm:mt-12 md:mt-16 grid",
-            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+            "grid-cols-1 lg:grid-cols-3",
             "items-stretch justify-items-stretch",
             "gap-5 sm:gap-6 md:gap-8 lg:gap-10",
           ].join(" ")}
@@ -148,6 +142,7 @@ export default function Packages() {
             <PlanCard key={idx} plan={p} />
           ))}
         </div>
+
       </div>
       <ContactForm />
       <section className="relative text-white py-20 px-6 md:px-12">

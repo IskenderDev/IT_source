@@ -12,7 +12,7 @@ export const EXPERTISE_SLIDES: Slide[] = [
 Аудит информационной безопасности — выявление уязвимостей, проверка антивирусной защиты и политик доступа
 Анализ программного обеспечения — проверка лицензионной чистоты, актуальности и соответствия бизнес-задачам
 Оценка ИТ-сервисов — диагностика работы почты, файловых хранилищ, ERP/CRM, систем резервного копирования`,
-    image: `${import.meta.env.BASE_URL}assets/slides/checklist.png`,
+    image: ``,
     primary: { label: "Связаться с нами", href: "#contact" },
     secondary: {
       label: "Скачать чек-лист",
@@ -45,6 +45,7 @@ export const EXPERTISE_SLIDES: Slide[] = [
 export const HOSTING_SLIDES: Slide[] = [
   {
     title: "Выделенные серверы и VPS",
+    href: "#arendserver",
     text:
       "Выделенные серверы — полный контроль над оборудованием и производительностью\n" +
       "Виртуальные серверы (VPS) — гибкая конфигурация и масштабирование\n" +
@@ -55,7 +56,7 @@ export const HOSTING_SLIDES: Slide[] = [
     primary: { label: "Подробнее", href: "#contact" },
     secondary: {
       label: "Узнать больше",
-      href: `${import.meta.env.BASE_URL}assets/check-lists/check-list_1.pdf`,
+      href: `#services`,
     },
     background: "#06498233",
   },
@@ -213,7 +214,7 @@ export const SPECIAL_SOLUTION_SLIDES: Slide[] = [
 
 export const SERVICE_SLIDES = [
   {
-    image: `${import.meta.env.BASE_URL}assets/slides/exp.png`,
+    image: `${import.meta.env.BASE_URL}assets/slides/exp_2.png`,
     title: "Экспертиза",
     subtitle: "Аудит, консалтинг, анализ инфраструктуры",
     cta: { label: "Подробнее", href: "#expertise" },
@@ -229,13 +230,13 @@ export const SERVICE_SLIDES = [
     cta: { label: "Подробнее", href: "#contact" },
   },
   {
-    image: `${import.meta.env.BASE_URL}assets/slides/hosting.png`,
+    image: `${import.meta.env.BASE_URL}assets/slides/hosting_2.png`,
     title: "Аренда серверов",
     subtitle: "Готовая IT-инфраструктура в ЦОД без перерывов",
-    cta: { label: "Подробнее", href: "#contact" },
+    cta: { label: "Подробнее", href: "#arendserver" },
   },
   {
-    image: `${import.meta.env.BASE_URL}assets/slides/special.png`,
+    image: `${import.meta.env.BASE_URL}assets/slides/special_2.png`,
     title: "Специальные решения",
     subtitle: "UKEY, IoT, интеграции, автоматизация",
     cta: { label: "Подробнее", href: "#contact" },

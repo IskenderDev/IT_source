@@ -6,9 +6,10 @@ import { Button, SectionTitle } from "../../ui";
 import { handleHashLinkClick } from "../../../lib/scroll";
 
 export type Slide = {
-  title: string;
-  text: string;
-  image: string;
+  title?: string;
+  text?: string;
+  image?: string;
+  href?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
   tertiary?: { label: string; href: string };
@@ -55,7 +56,7 @@ export default function Slider({
   mobileSlideMinH = 560,
   imageMaxHMobile = 192,
   imageMaxHDesktop = 480,
-  imageRightPx = 112,
+  imageRightPx = 40,
 }: Props) {
   const emblaPlugins = useMemo(
     () =>
@@ -125,7 +126,7 @@ export default function Slider({
                   className="
                     relative w-full
                     min-h-[var(--mh)] md:min-h-0
-                    h-auto md:h-[520px] lg:h-[560px]
+                    h-auto md:h-200 lg:h-[560px]
                     rounded-[24px] md:rounded-[28px]
                     p-4 md:p-8 lg:p-9 text-white
                     shadow-[0_8px_40px_rgba(0,0,0,0.35)]
@@ -270,6 +271,7 @@ export default function Slider({
                           className="
                             absolute -translate-y-1/2
                             object-contain
+                            w-50
                             drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]
                           "
                         />

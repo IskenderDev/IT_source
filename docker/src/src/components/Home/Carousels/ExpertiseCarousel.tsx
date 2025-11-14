@@ -6,9 +6,9 @@ import { Button, SectionTitle } from "../../ui";
 import { EXPERTISE_SLIDES } from "../../../app/data/slides";
 
 export type Slide = {
-  title: string;
-  text: string;
-  image: string;
+  title?: string;
+  text?: string;
+  image?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
   imageAlt?: string;
@@ -32,8 +32,8 @@ type Props = {
   glowSize?: number;
 
   mobileImageTop?: boolean;
-  mobileSlideMinH?: number;
 
+  mobileSlideMinH?: number;
   imageMaxHMobile?: number;
   imageMaxHDesktop?: number;
   imageRightPx?: number;
@@ -56,7 +56,6 @@ export default function ExpertiseSection({
   glowSize = 200,
 
   mobileImageTop = true,
-  mobileSlideMinH = 700,
 
   imageMaxHMobile = 300,
   imageMaxHDesktop = 480,
@@ -103,7 +102,7 @@ export default function ExpertiseSection({
   );
 
   return (
-    <section id='expertise' className={`relative w-full font-sans p-4 ${className}`}>
+    <section id="expertise" className={`relative w-full font-sans p-4 ${className}`}>
       <div className="mb-12 md:mb-16 relative">
         <SectionTitle heading={heading} subheading={subheading} />
         {showGlow && (
@@ -140,181 +139,91 @@ export default function ExpertiseSection({
             const showImgMobile = Boolean(s.image) && i !== 0;
 
             return (
-              <div key={i} className="flex-[0_0_100%]">
+              <div key={i} className="flex-[0_0_100%] flex justify-center h-150 w-200">
                 <article
                   className="
-                    relative w-full
-                    min-h-[var(--mh)] md:min-h-0
-                    h-auto md:h-[520px] lg:h-[560px]
-                    rounded-[24px] md:rounded-[28px]
-                    p-4 md:p-8 lg:p-9 text-white
-                    shadow-[0_8px_40px_rgba(0,0,0,0.35)]
-                    overflow-hidden
-                    flex flex-col
-                  "
+      relative w-full max-w-[100%] md:max-w-full
+      h-150 md:h-[520px] lg:h-[560px]
+      rounded-[24px] md:rounded-[28px]
+      p-4 md:p-8 lg:p-9
+      text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)]
+      overflow-hidden flex flex-col
+    "
                   style={{
-                    ["--mh" as string]: `${mobileSlideMinH}px`,
                     background:
-                      s.background ??
-                      "linear-gradient(280.68deg, #054277 1.65%, #01192A 97.64%)",
+                      s.background ?? "linear-gradient(280.68deg, #054277 1.65%, #01192A 97.64%)",
                   }}
-                  aria-label={`Слайд ${i + 1} из ${slides.length}`}
                 >
-                  {i === 0 && (
-                    <div
-                      className="pointer-events-none absolute rounded-full hidden md:block"
-                      style={{
-                        width: 260,
-                        height: 260,
-                        left: -80,
-                        transform: "translateY(-50%)",
-                        background: "#FC54EE",
-                        opacity: 0.35,
-                        filter: "blur(120px)",
-                        zIndex: 0,
-                        top: "50%",
-                      }}
-                    />
-                  )}
-
-                  {mobileImageTop && showImgMobile && (
-                    <div className="md:hidden flex justify-center">
+                  <div className="md:hidden flex flex-col items-center">
+                    {mobileImageTop && showImgMobile && (
                       <img
                         src={s.image}
                         alt={s.imageAlt ?? ""}
-                        loading="lazy"
-                        decoding="async"
-                        style={{ maxHeight: `${mMax}px` }}
                         className="object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
+                        style={{ maxHeight: `${mMax}px` }}
                       />
-                    </div>
-                  )}
-
-                  <div className="md:hidden mt-auto font-mono text-center">
-                    <h3 className="text-[24px] sm:text-[28px] font-bold leading-snug">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 text-[13px] sm:text-[14px] text-left text-white whitespace-pre-line">
-                      {s.text}
-                    </p>
-
-                    {i === 0 && (
-                      <p className="mt-5 text-left  text-[14px] sm:text-[15px] font-semibold text-white">
-                        Комплексная Экспертиза и Аудит IT-инфраструктуры
-                      </p>
                     )}
 
-                    <CTAButtons
-                      primary={s.primary}
-                      secondary={s.secondary}
-                      center
-                    />
+                    <h3 className="mt-4 text-[24px] sm:text-[28px] text-center font-bold">{s.title}</h3>
+                    <p className="mt-2 text-[14px] text-center">{s.text}</p>
+                    <CTAButtons primary={s.primary} secondary={s.secondary} />
                   </div>
 
-                  <div
-                    className="
-                      hidden md:grid h-full relative
-                      grid-cols-[1.2fr_0.8fr] gap-4 lg:gap-6 md:text-left
-                      items-center
-                    "
-                  >
-                    <div
-                      className={`ml-0 md:ml-28 font-mono ${
-                        !showImgDesktop ? "md:col-span-2" : ""
-                      }`}
-                    >
-                      <h3 className="text-[32px] lg:text-[40px] font-bold leading-snug">
-                        {s.title}
-                      </h3>
-                      <div className="mt-6 text-[15px] w-4xl text-white font-light  [&>p]:mt-4 first:[&>p]:mt-0">
-                        {s.text.split(/\n{2,}/).map((para, idx) => (
-                          <p key={idx} className="whitespace-pre-line leading-5">
-                            {para}
-                          </p>
-                        ))}
-                      </div>
-
-                      {i === 0 && (
-                        <p className="mt-5 text-[16px] font-semibold text-white">
-                          Комплексная Экспертиза и Аудит IT-инфраструктуры
-                        </p>
-                      )}
-
+                  <div className="hidden md:flex h-full items-center gap-8 relative">
+                    <div className="flex-1 ml-20">
+                      <h3 className="text-[32px] lg:text-[40px] font-bold">{s.title}</h3>
+                      <p className="mt-4 text-[15px] mr-15 text-white font-light">{s.text}</p>
                       <CTAButtons primary={s.primary} secondary={s.secondary} />
                     </div>
 
-                    {showImgDesktop && (
-                      <div className="h-full relative">
-                        <img
-                          src={s.image}
-                          alt={s.imageAlt ?? ""}
-                          loading="lazy"
-                          decoding="async"
-                          style={{
-                            maxHeight: `${dMax}px`,
-                            right: `${dRight}px`,
-                            top: "50%",
-                          }}
-                          className="
-                            absolute -translate-y-1/2
-                            object-contain
-                            drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]
-                          "
-                        />
-                      </div>
+                    {showArrows && (
+                      <>
+                        <button
+                          onClick={() => emblaApi?.scrollPrev()}
+                          aria-label="Предыдущий слайд"
+                          className="absolute top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white text-[#03CEA4] flex items-center justify-center hover:bg-white/90 active:scale-95 transition"
+                        >
+                          <ChevronLeft />
+                        </button>
+                        {showImgDesktop && (
+                          <div className="flex-1 flex justify-end relative">
+                            <img
+                              src={s.image}
+                              alt={s.imageAlt ?? ""}
+                              className="object-contain"
+                              style={{ maxHeight: `${dMax}px`, marginRight: `${dRight}px` }}
+                            />
+                          </div>
+                        )}
+                        <button
+                          onClick={() => emblaApi?.scrollNext()}
+                          aria-label="Следующий слайд"
+                          className="absolute right-[10px] top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white text-[#03CEA4] flex items-center justify-center hover:bg-white/90 active:scale-95 transition"
+                        >
+                          <ChevronRight />
+                        </button>
+                      </>
                     )}
                   </div>
 
-                  {showArrows && (
-                    <>
-                      <button
-                        onClick={() => emblaApi?.scrollPrev()}
-                        aria-label="Предыдущий слайд"
-                        className="
-                          hidden md:flex absolute left-4 top-1/2 -translate-y-1/2
-                          h-11 w-11 rounded-full bg-white text-[#03CEA4]
-                          items-center justify-center hover:bg-white/90 active:scale-95 transition
-                        "
-                      >
-                        <ChevronLeft />
-                      </button>
-
-                      <button
-                        onClick={() => emblaApi?.scrollNext()}
-                        aria-label="Следующий слайд"
-                        className="
-                          hidden md:flex absolute right-4 top-1/2 -translate-y-1/2
-                          h-11 w-11 rounded-full bg-white text-[#03CEA4]
-                          items-center justify-center hover:bg-white/90 active:scale-95 transition
-                        "
-                      >
-                        <ChevronRight />
-                      </button>
-                    </>
-                  )}
                 </article>
               </div>
+
             );
           })}
         </div>
       </div>
 
       {showDots && (
-        <div
-          className="mt-4 hidden md:flex w-full items-center justify-center gap-2"
-          aria-label="Навигация по слайдам"
-        >
+        <div className="mt-4 hidden md:flex w-full items-center justify-center gap-2" aria-label="Навигация по слайдам">
           {scrollSnaps.map((_, i) => (
             <button
               key={i}
               aria-label={`Перейти к слайду ${i + 1}`}
               aria-current={selectedIndex === i}
               onClick={() => scrollTo(i)}
-              className={`h-1.5 rounded-full transition ${
-                selectedIndex === i
-                  ? "w-8 bg-white"
-                  : "w-1.5 bg-white/50 hover:bg-white/70"
-              }`}
+              className={`h-1.5 rounded-full transition ${selectedIndex === i ? "w-8 bg-white" : "w-1.5 bg-white/50 hover:bg-white/70"
+                }`}
             />
           ))}
         </div>
@@ -323,37 +232,18 @@ export default function ExpertiseSection({
   );
 }
 
-function CTAButtons({
-  primary,
-  secondary,
-}: {
-  primary?: { label: string; href: string };
-  secondary?: { label: string; href: string };
-  center?: boolean;
-}) {
+function CTAButtons({ primary, secondary }: { primary?: { label: string; href: string }; secondary?: { label: string; href: string }; center?: boolean }) {
   if (!primary && !secondary) return null;
 
   const secondaryHref = secondary?.href ?? `${import.meta.env.BASE_URL}assets/check-lists/check-list_1.pdf`;
   const isPdf = /\.pdf($|\?)/i.test(secondaryHref);
 
   return (
-    <div
-      className={`mt-4 md:mt-6 flex flex-wrap gap-3`}
-    >
-      {primary && (
-          <Button size="lg" href="#contact">
-            {primary.label}
-          </Button>
-      )}
+    <div className={`mt-4 md:mt-6 flex flex-wrap gap-3`}>
+      {primary && <Button size="lg" href="#contact">{primary.label}</Button>}
       {secondary && (
-        <a
-          href={secondaryHref}
-          {...(isPdf ? { download: "" } : {})}
-          className="inline-block"
-        >
-          <Button size="lg" variant="outline">
-            {secondary.label}
-          </Button>
+        <a href={secondaryHref} {...(isPdf ? { download: "" } : {})} className="inline-block">
+          <Button size="lg" variant="outline">{secondary.label}</Button>
         </a>
       )}
     </div>
@@ -362,14 +252,7 @@ function CTAButtons({
 
 function ChevronLeft() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -377,14 +260,7 @@ function ChevronLeft() {
 
 function ChevronRight() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

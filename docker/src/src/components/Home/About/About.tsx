@@ -1,4 +1,6 @@
 import { SectionTitle } from "../../ui";
+// import CommandCarousel from "../Carousels/CommandCarousel";
+import TeamSlider from "../Carousels/TeamSlider";
 import ContactForm from "../ContactForm/ContactForm";
 
 export default function About() {
@@ -9,8 +11,10 @@ export default function About() {
     >
 
       <div className="mx-auto relative z-10 text-white">
-        <SectionTitle heading="О нас" />
+        <SectionTitle heading="Наша команда" />
       <div className="absolute -left-40 top-20 hidden md:block w-[260px] h-[150px] rounded-full bg-[#03CEA4] opacity-30 blur-[128px] pointer-events-none" />
+
+        <TeamSlider />
 
         <div className="mt-8 space-y-6 text-lg md:text-base leading-relaxed text-center">
           <p>
